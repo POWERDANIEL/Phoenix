@@ -15,11 +15,13 @@ import registerAction from './actions/registerAction.js';
 import loginAction from './actions/loginAction.js';
 import resetLinkAction from './actions/resetLinkAction.js';
 import resetPasswordAction from './actions/resetPasswordAction.js';
+import appLoader from './loaders/appLoader.js';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
+    loader: appLoader,
   },
   {
     path: '/register',
