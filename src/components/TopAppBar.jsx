@@ -1,10 +1,6 @@
-import {
-  Link,
-  useNavigation,
-  useNavigate,
-  useLoaderData,
-} from 'react-router-dom';
+import { useNavigation, useNavigate, useLoaderData } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
+import PropTypes from 'prop-types';
 
 import logout from '../utils/logout';
 
@@ -14,10 +10,9 @@ import Avatar from './Avatar';
 import Menu from './Menu';
 import MenuItem from './MenuItem';
 import { LinearProgress } from './Progress';
+import Logo from './Logo';
 
-import { logoLight, logoDark } from '../assets/assets';
-
-const TopAppBar = () => {
+const TopAppBar = ({ toggleSidebar }) => {
   const navigation = useNavigation();
 
   const navigate = useNavigate();
@@ -35,27 +30,10 @@ const TopAppBar = () => {
           icon='menu'
           title='Menu'
           classes='lg:hidden'
+          onClick={toggleSidebar}
         />
 
-        <Link
-          to='/'
-          className='mix-w-max max-w-max h-[24px] lg:hidden'
-        >
-          <img
-            src={logoLight}
-            width={133}
-            height={24}
-            alt='phoenix logo'
-            className='dark:hidden'
-          />
-          <img
-            src={logoDark}
-            width={133}
-            height={24}
-            alt='phoenix logo'
-            className='hidden dark:block'
-          />
-        </Link>
+        <Logo className='lg:hidden' />
       </div>
       <div className='menu-wrapper'>
         {/* Button to toggle the menu */}
@@ -75,6 +53,10 @@ const TopAppBar = () => {
       <AnimatePresence>{isNormalLoad && <LinearProgress />}</AnimatePresence>
     </header>
   );
+};
+
+TopAppBar.propTypes = {
+  toggleSidebar: PropTypes.func,
 };
 
 export default TopAppBar;

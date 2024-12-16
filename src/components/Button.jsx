@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const Button = ({
   classes = '',
@@ -28,7 +30,7 @@ Button.propTypes = {
 
 const IconBtn = ({ classes = '', icon, size = '', children, ...rest }) => {
   return (
-    <button
+    <motion.button
       className={`icon-btn ${size} ${classes}`}
       {...rest}
     >
@@ -39,7 +41,7 @@ const IconBtn = ({ classes = '', icon, size = '', children, ...rest }) => {
       )}
 
       <div className='state-layer'></div>
-    </button>
+    </motion.button>
   );
 };
 
@@ -50,4 +52,26 @@ IconBtn.propTypes = {
   children: PropTypes.any,
 };
 
-export { Button, IconBtn };
+const ExtendedFab = ({ href, text, classes = '', ...rest }) => {
+  return (
+    <Link
+      to={href}
+      className={`extended-fab ${classes}`}
+      {...rest}
+    >
+      <span className='material-symbols-rounded'>add</span>
+
+      <span className='truncate'>{text}</span>
+
+      <div className='state-layer'></div>
+    </Link>
+  );
+};
+
+ExtendedFab.propTypes = {
+  href: PropTypes.string,
+  text: PropTypes.string,
+  classes: PropTypes.string,
+};
+
+export { Button, IconBtn, ExtendedFab };

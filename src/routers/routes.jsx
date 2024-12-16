@@ -5,6 +5,7 @@ import Register from '../pages/Register.jsx';
 import Login from '../pages/Login.jsx';
 import ResetLink from '../pages/ResetLink.jsx';
 import ResetPassword from '../pages/ResetPassword.jsx';
+import Conversations from '../components/Conversations.jsx';
 
 import registerLoader from './loaders/registerLoader.js';
 import loginLoader from './loaders/loginLoader.js';
@@ -16,12 +17,20 @@ import loginAction from './actions/loginAction.js';
 import resetLinkAction from './actions/resetLinkAction.js';
 import resetPasswordAction from './actions/resetPasswordAction.js';
 import appLoader from './loaders/appLoader.js';
+import appAction from './actions/appAction.js';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
     loader: appLoader,
+    action: appAction,
+    children: [
+      {
+        path: '/:conversationId',
+        element: <Conversations />,
+      },
+    ],
   },
   {
     path: '/register',
