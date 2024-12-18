@@ -1,12 +1,16 @@
+
+/**
+ * Node modules
+ */
 import PropTypes from 'prop-types';
 
-const Menu = ({ className, children }) => {
-  return <div className={`menu ${className}`}>{children}</div>;
+const Menu = ({ classes = '', children }) => {
+  return <div className={`menu ${classes}`}>{children}</div>;
 };
 
 Menu.propTypes = {
-  className: PropTypes.string,
-  children: PropTypes.node,
+  classes: PropTypes.string,
+  children: PropTypes.any,
 };
 
 export default Menu;

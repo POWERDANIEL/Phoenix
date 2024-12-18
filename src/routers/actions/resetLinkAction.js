@@ -1,3 +1,7 @@
+
+/**
+ * Custom modules
+ */
 import { account } from '../../lib/appwrite';
 
 const resetLinkAction = async ({ request }) => {
@@ -11,7 +15,7 @@ const resetLinkAction = async ({ request }) => {
     return {
       ok: true,
       message:
-        'You will receive a password reset link shortly. Please check your email and follow the instructions to recet your password.',
+        'You will receive a password reset link shortly. Please check your email and follow the instructions to reset your password.',
     };
   } catch (err) {
     console.log(`Error getting password reset link: ${err.message}`);

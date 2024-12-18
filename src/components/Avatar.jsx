@@ -1,5 +1,12 @@
+
+/**
+ * Node modules
+ */
 import PropTypes from 'prop-types';
 
+/**
+ * Custom modules
+ */
 import { avatars } from '../lib/appwrite';
 
 const Avatar = ({ name }) => {

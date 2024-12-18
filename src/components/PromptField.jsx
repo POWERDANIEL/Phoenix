@@ -1,21 +1,36 @@
+
+/**
+ * Node modules
+ */
 import { motion } from 'framer-motion';
 import { useRef, useCallback, useState } from 'react';
-import { useNavigation, useSubmit } from 'react-router-dom';
+import { useNavigation, useSubmit, useParams } from 'react-router-dom';
 
+/**
+ * Components
+ */
 import { IconBtn } from './Button';
 
 const PromptField = () => {
+  // 'inputField' and 'inputFieldContainer' hold references to their DOM elements.
   const inputField = useRef();
   const inputFieldContainer = useRef();
 
+  // manual form submission
   const submit = useSubmit();
 
+  // initial navigation for checking state
   const navigation = useNavigation();
 
+  // Retrieve the conversationId from url path
+  const { conversationId } = useParams();
+
+  // State for input field
   const [placeholderShown, setPlaceholderShown] = useState(true);
   const [isMultiline, setMultiline] = useState(false);
   const [inputValue, setInputValue] = useState('');
 
+  // Handle input field input change
   const handleInputChange = useCallback(() => {
     if (inputField.current.innerText === '\n')
       inputField.current.innerHTML = '';
@@ -25,18 +40,22 @@ const PromptField = () => {
     setInputValue(inputField.current.innerText.trim());
   }, []);
 
+  // Move cursor to the end after paste text in input field
   const moveCursorToEnd = useCallback(() => {
     const editableElem = inputField.current;
     const range = document.createRange();
     const selection = window.getSelection();
 
+    // Set the range to the last child of the editable element
     range.selectNodeContents(editableElem);
-    range.collapse(false);
+    range.collapse(false); // Collapse the range to the end
 
+    // Clear existing selections and add the new range
     selection.removeAllRanges();
     selection.addRange(range);
   }, []);
 
+  // Handle paste text
   const handlePaste = useCallback(
     (e) => {
       e.preventDefault();
@@ -47,7 +66,9 @@ const PromptField = () => {
     [handleInputChange, moveCursorToEnd],
   );
 
+  // Handle submit
   const handleSubmit = useCallback(() => {
+    // Prevent submission if the input is empty or form submission is ongoing.
     if (!inputValue || navigation.state === 'submitting') return;
 
     submit(
@@ -58,14 +79,15 @@ const PromptField = () => {
       {
         method: 'POST',
         encType: 'application/x-www-form-urlencoded',
-        action: '/',
+        action: `/${conversationId || ''}`,
       },
     );
 
     inputField.current.innerHTML = '';
     handleInputChange();
-  }, [handleInputChange, inputValue, navigation.state, submit]);
+  }, [handleInputChange, inputValue, navigation.state, submit, conversationId]);
 
+  // Defines a Framer Motion variant for the prompt field, controlling its animation based on its visibility state.
   const promptFieldVariant = {
     hidden: { scaleX: 0 },
     visible: {
@@ -80,6 +102,7 @@ const PromptField = () => {
     },
   };
 
+  // Defines a Framer Motion variant for the prompt field children, controlling its animation based on its visibility state.
   const promptFieldChildrenVariant = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
@@ -88,7 +111,7 @@ const PromptField = () => {
   return (
     <motion.div
       className={`prompt-field-container ${isMultiline ? 'rounded-large' : ''}`}
-      varianrs={promptFieldVariant}
+      variants={promptFieldVariant}
       initial='hidden'
       animate='visible'
       ref={inputFieldContainer}
@@ -100,12 +123,14 @@ const PromptField = () => {
         aria-multiline={true}
         aria-label='Enter a prompt here'
         data-placeholder='Enter a prompt here'
-        varianrs={promptFieldChildrenVariant}
+        variants={promptFieldChildrenVariant}
         ref={inputField}
         onInput={handleInputChange}
         onPaste={handlePaste}
         onKeyDown={(e) => {
+          // Handle case where user press only 'Enter' key
           if (e.key === 'Enter' && !e.shiftKey) {
+            // Submit input
             e.preventDefault();
             handleSubmit();
           }
@@ -116,8 +141,8 @@ const PromptField = () => {
         icon='send'
         title='Submit'
         size='large'
-        className='ms-auto'
-        varianrs={promptFieldChildrenVariant}
+        classes='ms-auto'
+        variants={promptFieldChildrenVariant}
         onClick={handleSubmit}
       />
 

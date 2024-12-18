@@ -1,7 +1,14 @@
+
+/**
+ * Node modules
+ */
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
+/**
+ * Common button
+ */
 const Button = ({
   classes = '',
   variant = 'filled',
@@ -28,6 +35,9 @@ Button.propTypes = {
   children: PropTypes.any,
 };
 
+/**
+ * Icon button
+ */
 const IconBtn = ({ classes = '', icon, size = '', children, ...rest }) => {
   return (
     <motion.button
@@ -52,6 +62,9 @@ IconBtn.propTypes = {
   children: PropTypes.any,
 };
 
+/**
+ * Extended fab
+ */
 const ExtendedFab = ({ href, text, classes = '', ...rest }) => {
   return (
     <Link

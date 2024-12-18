@@ -1,10 +1,16 @@
+
+/**
+ * Node modules
+ */
 import { redirect } from 'react-router-dom';
 
+/**
+ * Custom modules
+ */
 import { account } from '../../lib/appwrite';
 
 const resetPasswordAction = async ({ request }) => {
   const formData = await request.formData();
-
   const url = new URL(request.url);
 
   try {
@@ -16,10 +22,9 @@ const resetPasswordAction = async ({ request }) => {
 
     return redirect('/login');
   } catch (err) {
-    console.log(`Error getting password reset link: ${err.message}`);
+    console.log(`Error updating password: ${err.message}`);
 
     return {
-      ok: false,
       message: err.message,
     };
   }

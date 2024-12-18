@@ -1,6 +1,13 @@
+
+/**
+ * Node modules
+ */
 import { createContext, useState, useRef, useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
+/**
+ * Components
+ */
 import Snackbar from '../components/Snackbar';
 
 const initialCtxValue = {
@@ -24,23 +31,33 @@ const SnackbarProvider = ({ children }) => {
 
   const timeoutRef = useRef();
 
-  const showSnackbar = useCallback((message, type = 'info', timeOut = 5000) => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+  // Show Snackbar
+  const showSnackbar = useCallback(
+    ({ message, type = 'info', timeOut = 5000 }) => {
+      // Clear any existing timeout to prevent overlap
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
 
-    setSnackbar({ open: true, message, type });
+      // Set the new snackbar message and type
+      setSnackbar({ open: true, message, type });
 
-    timeoutRef.current = setTimeout(() => {
-      setSnackbar((prev) => {
-        return { ...prev, open: false };
-      });
-    }, timeOut);
-  }, []);
+      // Auto-hide the snackbar after timeOut
+      timeoutRef.current = setTimeout(() => {
+        setSnackbar((prev) => {
+          return { ...prev, open: false };
+        });
+      }, timeOut);
+    },
+    [],
+  );
 
+  // Hide Snackbar manually (if needed)
   const hideSnackbar = useCallback(() => {
+    // Clear any existing timeout to prevent overlap
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
     setSnackbar({ open: false, message: '', type: 'info' });
   }, []);
 
+  // Memoize the context value to prevent unnecessary re-renders
   const contextValue = useMemo(() => {
     return { showSnackbar, hideSnackbar };
   }, [showSnackbar, hideSnackbar]);

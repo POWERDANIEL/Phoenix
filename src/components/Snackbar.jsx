@@ -1,7 +1,12 @@
+
+/**
+ * Node modules
+ */
 import PropTypes from 'prop-types';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Snackbar = ({ snackbar }) => {
+  // Defines Framer Motion variants for a snackbar animation.
   const snackbarVariant = {
     hidden: { scaleY: 0 },
     visible: {
@@ -36,7 +41,7 @@ const Snackbar = ({ snackbar }) => {
         >
           <motion.span
             variants={snackbarChildVariant}
-            transition={{ duration: 0.2, delay: 0.1, ease: 'ease0ut' }}
+            transition={{ duration: 0.2, delay: 0.1, ease: 'easeOut' }}
           >
             {snackbar.message}
           </motion.span>

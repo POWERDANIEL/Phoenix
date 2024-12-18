@@ -1,13 +1,20 @@
+
+/**
+ * Node modules
+ */
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+/**
+ * Assets
+ */
 import { logoLight, logoDark } from '../assets/assets';
 
-const Logo = ({ className = '' }) => {
+const Logo = ({ classes = '' }) => {
   return (
     <Link
       to='/'
-      className={`mix-w-max max-w-max h-[24px] ${className}`}
+      className={`min-w-max max-w-max h-[24px] ${classes}`}
     >
       <img
         src={logoLight}
@@ -16,6 +23,7 @@ const Logo = ({ className = '' }) => {
         alt='phoenix logo'
         className='dark:hidden'
       />
+
       <img
         src={logoDark}
         width={133}

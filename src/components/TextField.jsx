@@ -1,7 +1,11 @@
+
+/**
+ * Node modules
+ */
 import PropTypes from 'prop-types';
 
 const TextField = ({
-  classes,
+  classes = '',
   helperText,
   label,
   name,

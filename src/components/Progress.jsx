@@ -1,8 +1,20 @@
+
+/**
+ * Node modules
+ */
 import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 
+/**
+ * Circular progress
+ */
 const CircularProgress = ({ classes = '', size = '' }) => {
-  return <div className={`circular-progress  ${classes} ${size}`}></div>;
+  return (
+    <div
+      role='progressbar'
+      className={`circular-progress ${size} ${classes}`}
+    ></div>
+  );
 };
 
 CircularProgress.propTypes = {
@@ -10,9 +22,13 @@ CircularProgress.propTypes = {
   size: PropTypes.string,
 };
 
+/**
+ * Linear progress
+ */
 const LinearProgress = ({ classes = '' }) => {
+  // Defines Framer Motion variants for animating a progress bar and an active indicator.
   const progressbarVariant = {
-    start: { scale: 0 },
+    start: { scaleY: 0 },
     end: {
       scaleY: 1,
       transition: {
@@ -24,7 +40,7 @@ const LinearProgress = ({ classes = '' }) => {
     },
     exit: {
       scaleY: 0,
-      taransition: {
+      transition: {
         duration: 0.1,
         ease: 'easeOut',
       },
@@ -32,7 +48,7 @@ const LinearProgress = ({ classes = '' }) => {
   };
 
   const activeIndicatorVariant = {
-    start: { traslateX: '-100%' },
+    start: { translateX: '-100%' },
     end: { translateX: '100%' },
   };
 

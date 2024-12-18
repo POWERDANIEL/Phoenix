@@ -1,3 +1,7 @@
+
+/**
+ * Node modules
+ */
 import PropTypes from 'prop-types';
 
 const MenuItem = ({ classes = '', labelText, ...rest }) => {
