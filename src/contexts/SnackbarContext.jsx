@@ -16,7 +16,7 @@ const initialCtxValue = {
     message: '',
     type: 'info',
   },
-  showSnackbar: ({ message, type = 'info', timeOut = 5000 }) => {},
+  showSnackbar: () => {},
   hideSnackbar: () => {},
 };
 

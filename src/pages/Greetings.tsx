@@ -1,27 +1,13 @@
-
-/**
- * Node modules
- */
-import { useLoaderData } from 'react-router-dom';
 import { motion } from 'framer-motion';
-
-/**
- * Custom hooks
- */
 import { usePromptPreloader } from '../hooks/userPromptPreloader';
-
-/**
- * Components
- */
 import PromptPreloader from '../components/PromptPreloader';
 
-const Greetings = () => {
-  // Load the user data from the loader data using the useLoaderData hook.
-  const { user } = useLoaderData();
+interface GreetingsProps {
+  user?: { name: string };
+}
 
-  // Retrieve the prompt preloader value using the custom hook `usePromptPreloader`.
+const Greetings = ({ user }: GreetingsProps) => {
   const { promptPreloaderValue } = usePromptPreloader();
-
   return (
     <>
       {promptPreloaderValue ? (
@@ -35,7 +21,7 @@ const Greetings = () => {
               transition={{ duration: 4, ease: [0.05, 0.7, 0.1, 1] }}
               className='bg-gradient-to-r from-teal-400 from-0% via-cyan-500 via-56% to-transparent to-75% bg-[length:350%_100%] bg-[100%_0] bg-clip-text text-transparent'
             >
-              Hello, {user.name.split(' ').at()}
+              Hello, {user?.name?.split(' ').at(0)}
             </motion.span>
             <br />
             <motion.span
