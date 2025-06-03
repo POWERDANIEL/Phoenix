@@ -3,7 +3,7 @@
  * Node modules
  */
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 /**
@@ -67,11 +67,7 @@ IconBtn.propTypes = {
  */
 const ExtendedFab = ({ href, text, classes = '', ...rest }) => {
   return (
-    <Link
-      to={href}
-      className={`extended-fab ${classes}`}
-      {...rest}
-    >
+    <Link href={href} className={`extended-fab ${classes}`} {...rest}>
       <span className='material-symbols-rounded'>add</span>
 
       <span className='truncate'>{text}</span>

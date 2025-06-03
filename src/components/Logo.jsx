@@ -2,7 +2,7 @@
 /**
  * Node modules
  */
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import PropTypes from 'prop-types';
 
 /**
@@ -12,10 +12,7 @@ import { logoLight, logoDark } from '../assets/assets';
 
 const Logo = ({ classes = '' }) => {
   return (
-    <Link
-      to='/'
-      className={`min-w-max max-w-max h-[24px] ${classes}`}
-    >
+    <Link href='/' className={`min-w-max max-w-max h-[24px] ${classes}`}>
       <img
         src={logoLight}
         width={133}
