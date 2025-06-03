@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { hopscotch, coy } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { hopscotch, coy } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import { useState, useEffect, useCallback } from 'react';
 
 /**

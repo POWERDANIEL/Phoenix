@@ -2,6 +2,7 @@
 /**
  * Node modules
  */
+/* global process */
 import { Client, Account, Avatars, Databases } from 'appwrite';
 
 /**
