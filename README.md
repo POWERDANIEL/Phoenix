@@ -1,8 +1,21 @@
-# React + Vite
+# Phoenix Chat
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project uses **Next.js** with **TypeScript** and **Tailwind CSS** to deliver a chat interface enhanced by MotionUI animations.
 
-Currently, two official plugins are available:
+## Scripts
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- `npm run dev` – start the development server
+- `npm run build` – create a production build
+- `npm start` – run the production server
+- `npm run lint` – lint the project using ESLint
+
+## Getting Started
+
+Install dependencies and start the local dev server:
+
+```bash
+npm install
+npm run dev
+```
+
+Then open [http://localhost:3000](http://localhost:3000) in your browser.
